@@ -49,7 +49,7 @@ Array.prototype.insert = function ( index, item ) {
         board[a].midpop(nullSpot);
       }
     }
-    console.log(board); //log the result
+    console.log(displayify(board)); //log the result
   };
   
   function rotateArr2DVerti (a, b, c) { //define function. a means which column, b means how much to rotate, c is the direction, either 0 (up) or 1 (down)
@@ -114,7 +114,7 @@ Array.prototype.insert = function ( index, item ) {
         }
       }
     }
-    console.log(board);
+    console.log(displayify(board));
   }
   
   //MUCHO IMPORTANT
