@@ -284,7 +284,7 @@ stdin.addListener("keypress", function(d,x){
             move(3, 2);
             break;
         case "l":
-            move(3, 2);
+            move(3, 3);
             break;
         case "z":
             move(4, 0);
