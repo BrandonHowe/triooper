@@ -1,0 +1,17 @@
+{
+  "name": "nodeooper",
+  "version": "1.0.0",
+  "description": "triangular loopover in node",
+  "main": "index.js",
+  "dependencies": {
+    "commander": "^2.20.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js",
+    "command": "node.cmd index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
