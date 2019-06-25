@@ -159,7 +159,7 @@ Array.prototype.insert = function ( index, item ) {
         }
       }
     }
-    console.log(board);
+    console.log(displayify(board));
   }
   
   // rotateArr2DDiag(2, 1, 1);
@@ -185,6 +185,20 @@ Array.prototype.insert = function ( index, item ) {
         rotateArr2DDiag(b, 1, 1);
     }
   }
+
+function displayify (a) {
+    let newboard = '';
+    for (let i = 0; i < a.length; i++) {
+        for (let j = 0; j < a[i].length; j++) {
+            if (a[i][j] === null) {
+                a[i].pop();
+                j--;
+            }
+        }
+        newboard += a[i].join() + "\n";
+    }
+    console.log(newboard);
+}
   
 //   move(4, 0)
   
