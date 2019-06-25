@@ -26,29 +26,40 @@ Array.prototype.insert = function ( index, item ) {
   
   function rotateArr2DHoriz (a, b, c) { //define function. a means which row, b means how much to rotate, c is the direction, either 0 (left) or 1 (right)
     for (let i = 0; i < b; i ++) { //for loop that runs as many times as the value of a
-      if (c === 0) { //if b is 0, move left
-        // console.log(board[a]);
-        for (let j = 0; j < board[a].length; j++) {
-          // console.log(board[a][j]);
-          if (board[a][j] == null) {
-            var nullSpot = j - 1;
-            break;
+        if (c === 0) { //if b is 0, move left
+          // console.log(board[a]);
+          for (let j = 0; j < board[a].length; j++) {
+            // console.log(board[a][j]);
+            console.log(j + "|" + board[a] + "|" + board[a][j])
+            if (board[a][j] == null) {
+              var nullSpot = j - 1;
+              console.log("TESTSTSTST")
+              break;
+            }
+          }
+        //   console.log(nullSpot)
+        if (nullSpot) {
+            board[a].insert(nullSpot, board[a].shift()); //takes the first one away and inserts it in
+        } else {
+            board[a].push(board[a].shift());
+        }
+        } else if (c === 1) { //if b is 1, move right
+          for (let j = 0; j < board[a].length; j++) {
+            // console.log(board[a][j]);
+            if (board[a][j] == null) {
+              var nullSpot = j;
+              break;
+            }
+          }
+          if (nullSpot) {
+            board[a].unshift(board[a][nullSpot - 1])
+            board[a].midpop(nullSpot);
+          } else {
+              board[a].unshift(board[a].pop());
           }
         }
-        console.log(nullSpot)
-        board[a].insert(nullSpot, board[a].shift()); //takes the first one away and inserts it in
-      } else if (c === 1) { //if b is 1, move right
-        for (let j = 0; j < board[a].length; j++) {
-          // console.log(board[a][j]);
-          if (board[a][j] == null) {
-            var nullSpot = j;
-            break;
-          }
-        }
-        board[a].unshift(board[a][nullSpot - 1])
-        board[a].midpop(nullSpot);
       }
-    }
+    // console.log(board)
     console.log(displayify(board)); //log the result
   };
   
@@ -92,13 +103,13 @@ Array.prototype.insert = function ( index, item ) {
         tempArr.push(board[i][a * 2 + 1])
       }
     }
-    console.log(tempArr)
+    // console.log(tempArr)
     if (c === 0) {
       rotateArr1D(b, 0, tempArr);
     } else if (c === 1) {
       rotateArr1D(b, 1, tempArr);
     }
-    console.log(tempArr)
+    // console.log(tempArr)
     // let nullSkipped = 0;
     for (let i = 0; i < board.length; i++) {
       // console.log("Testcase: " + board[i][a])
@@ -107,7 +118,7 @@ Array.prototype.insert = function ( index, item ) {
         continue;
       } else if (board[i][a * 2 + 1] != null){
         // console.log("Testcase: " + board[i][a] + '|' + tempArr[i - nullSkipped])
-        console.log("i: " + i + '|nullSkipped: ' + nullSkipped)
+        // console.log("i: " + i + '|nullSkipped: ' + nullSkipped)
         board[i][a * 2 + 1] = tempArr[i - nullSkipped + a];
         if (board[i][a * 2 + 1]) {
           board[i][a * 2 + 1] = tempArr[i - nullSkipped + a];
@@ -136,7 +147,7 @@ Array.prototype.insert = function ( index, item ) {
         tempArr.push(board[i + a][i * 2])
       }
     }
-    console.log(tempArr)
+    // console.log(tempArr)
     if (c === 0) {
       rotateArr1D(b * 2, 0, tempArr);
     } else if (c === 1) {
@@ -144,15 +155,15 @@ Array.prototype.insert = function ( index, item ) {
     }
     // console.log(tempArr)
     let nullSkipped = 0;
-    console.log("temparr: " + tempArr)
+    // console.log("temparr: " + tempArr)
     for (let i = 0; i < board.length - a; i++) {
-      console.log(board[i + a])
+    //   console.log(board[i + a])
       // console.log("Testcase: " + board[i][a])
       if (board[i + a][(i * 2)] == null) {
         nullSkipped++;
         continue;
       } else if (board[i + a][(i * 2)] != null){
-        console.log("Testcase: " + i + "|" + nullSkipped + '|' + board[i][a] + '|' + tempArr[i - nullSkipped])
+        // console.log("Testcase: " + i + "|" + nullSkipped + '|' + board[i][a] + '|' + tempArr[i - nullSkipped])
         board[i + a][(i * 2)] = tempArr[i * 2- nullSkipped];
         if (board[i + a][i * 2 - 1]) {
           board[i + a][i * 2 - 1] = tempArr[i * 2 - 1 - nullSkipped]
@@ -186,17 +197,27 @@ Array.prototype.insert = function ( index, item ) {
     }
   }
 
-function displayify (a) {
+function displayify (b) {
+    let a = b;
     let newboard = '';
     for (let i = 0; i < a.length; i++) {
         for (let j = 0; j < a[i].length; j++) {
+            // console.log("L:" + a[i][j].toString().length)
             if (a[i][j] === null) {
                 a[i].pop();
                 j--;
+            } else if (a[i][j].toString().length === 1) {
+                // console.log("test")
+                a[i][j] += " ";
             }
         }
-        newboard += a[i].join() + "\n";
+        let spaceInterval = "";
+        for (let k = 0; k < (4 * (3 - i) + i); k++) {
+            spaceInterval += " ";
+        }
+        newboard += "\n" + spaceInterval + a[i].join(" ");
     }
+    // console.log(board);
     console.log(newboard);
 }
   
@@ -291,3 +312,5 @@ stdin.addListener("keypress", function(d,x){
             break;
     }
 })
+
+console.log(displayify(board));
