@@ -37,6 +37,10 @@ function rotateArr1D (a, b, c) { //define function. a means the amount of spaces
   };
   
   function rotateArr2DHoriz (a, b, c) { //define function. a means which row, b means how much to rotate, c is the direction, either 0 (left) or 1 (right)
+    if (a === 0) {
+        console.log(displayify(board));
+        return;
+    }
     for (let i = 0; i < b; i ++) { //for loop that runs as many times as the value of a
       if (c === 0) { //if b is 0, move left
         // console.log(board[a]);
@@ -46,6 +50,9 @@ function rotateArr1D (a, b, c) { //define function. a means the amount of spaces
             var nullSpot = j - 1;
             break;
           }
+        }
+        if (!nullSpot) {
+            var nullSpot = board[a].length - 1;
         }
         // console.log(nullSpot)
         board[a].insert(nullSpot, board[a].shift()); //takes the first one away and inserts it in
@@ -57,10 +64,14 @@ function rotateArr1D (a, b, c) { //define function. a means the amount of spaces
             break;
           }
         }
+        if (!nullSpot) {
+            var nullSpot = 0;
+        }
         board[a].unshift(board[a][nullSpot - 1])
         board[a].midpop(nullSpot);
       }
     }
+    // console.log(board);
     console.log(displayify(board)); //log the result
   };
   
@@ -245,7 +256,7 @@ function scramble () {
     for (let i = 0; i < 100; i++) {
         let randA = Math.floor(Math.random() * 6);
         let randB = Math.floor(Math.random() * 4);
-        console.log("move(" + randA + ", " + randB + ");")
+        // console.log("move(" + randA + ", " + randB + ");")
         move(randA, randB);
     }
     recordMoves = true;
@@ -276,7 +287,7 @@ function scramble () {
               move(0, 2);
               break;
           case "r":
-              move(0, 3);
+              console.log(displayify(board));
               break;
           case "t":
               scramble();
@@ -291,10 +302,10 @@ function scramble () {
               move(1, 2);
               break;
           case "p":
-              move(1, 3);
+              console.log(displayify(board));
               break;
           case "a":
-              move(2, 0);
+              console.log(displayify(board));
               break;
           case "s":
               move(2, 1);
@@ -306,7 +317,7 @@ function scramble () {
               move(2, 3);
               break;
           case "h":
-              move(3, 0);
+              console.log(displayify(board));
               break;
           case "j":
               move(3, 1);
@@ -327,7 +338,7 @@ function scramble () {
               move(4, 2);
               break;
           case "v":
-              move(4, 3);
+              console.log(displayify(board));
               break;
           case "b":
               move(5, 0);
@@ -339,7 +350,7 @@ function scramble () {
               move(5, 2);
               break;
           case ",":
-              move(5, 3);
+              console.log(displayify(board));
               break;
       }
   })
