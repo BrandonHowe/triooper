@@ -7,6 +7,7 @@ How to run:
 4. You're free to play!
 
 Controls:
+t - scramble (does 100 random moves);
 q - RU1
 w - RU2
 e - RU3
