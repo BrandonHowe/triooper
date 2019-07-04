@@ -326,7 +326,9 @@ function scramble () {
               move(3, 2);
               break;
           case "l":
-              move(3, 3);
+              for (let i = 0; i < 6; i++) {
+                move(2, 3);
+              }
               break;
           case "z":
               move(4, 0);
